@@ -1,7 +1,11 @@
 document.addEventListener('DOMContentLoaded', init, false);
+const widht = window.innerWidth;
+const height = window.innerHeight;
+
+
 const constraints = {
     audio: true,
-    video: {widht: 1280, height: 720}
+    video: {widht: widht, height: height}
 }
 
 async function init(){
@@ -27,6 +31,8 @@ function handleSuccess(stream){
 
 function drawCapture(){
     var c = document.getElementById("capture");
+    c.style.width = widht;
+    c.style.height = height;
     var ctx = c.getContext("2d");
     ctx.drawImage(window.live, 10, 10);
 }
