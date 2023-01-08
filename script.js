@@ -10,7 +10,7 @@ const constraints = {
 
 async function init(){
     const error = document.getElementById("error");
-    const live = document.getElementById("live");
+    const live = document.getElementById("live"); 
     try{
      const stream = await navigator.mediaDevices.getUserMedia(constraints);
      handleSuccess(stream);
@@ -25,14 +25,17 @@ async function init(){
 function handleSuccess(stream){
     window.stream =  stream
     live.srcObject = stream;
+    live.addEventListener("playing", () => {
+        var c = document.getElementById("capture");
+        c.style.width = live.videoWidth +"px";
+        c.style.height = live.videoHeight+"px";
+      });    
     error.innerHTML =  "Nice";
 
 }
 
 function drawCapture(){
     var c = document.getElementById("capture");
-    c.style.width = widht+"px";
-    c.style.height = height+"px";
     var ctx = c.getContext("2d");
     ctx.drawImage(window.live, 10, 10);
 }
