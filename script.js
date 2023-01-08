@@ -5,7 +5,7 @@ const height = window.innerHeight;
 
 const constraints = {
     audio: true,
-    video: {widht: widht, height: height}
+    video: true
 }
 
 async function init(){
