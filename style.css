@@ -1,3 +1,29 @@
+body{
+    margin:0;
+    padding:0;
+}
+
 .hidden{
-    display: none;
+    display: none;  
+}
+
+#app{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(16, 16, 16);
+}
+
+#titre{
+    font-size: 5vw;
+    color: aliceblue;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 4vh;
+}
+
+#unlock{}
+
+
+.centered-element{
+    display: flex;
+    justify-content: center;
 }

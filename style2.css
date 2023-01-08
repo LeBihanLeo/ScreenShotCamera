@@ -1,0 +1,124 @@
+*{
+    margin:0;
+    padding:0;
+    color: rgb(20, 20, 20);
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+
+.centered-element{
+    display: flex;
+    justify-content: center;
+}
+
+#instructions{
+    font-size: 2vh;   
+    padding: 1vh;   
+    text-align: center;
+   
+}
+
+
+.container {
+background: #f0f0f0;
+box-sizing: border-box;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100vw;
+height: 100vh;
+flex-direction: column;
+}
+
+.box {
+font-size: 0vw;         
+
+border-radius: 20px;
+width: 60px;
+height: 60px;
+background: #f0f0f0;
+box-shadow:  0 0 0 #cccccc,
+                0 0 0 #ffffff,
+                10px 10px 10px #cccccc inset,
+                -10px -10px 10px #ffffff inset;
+
+}
+
+.hide{
+    animation: hide 2s;
+    animation-fill-mode: forwards;
+}
+
+.anime{
+    animation: anime 3s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes hide {
+    0% {
+        opacity: 100%;
+    }
+    100% {
+        opacity: 0%;
+        display: none;  
+    }
+}
+
+
+
+@keyframes anime {
+    0% {
+        width: 60px;
+        height: 60px;
+        background: #f0f0f0;
+        box-shadow:  0 0 0 #cccccc,
+                    0 0 0 #ffffff,
+                    10px 10px 10px #cccccc inset,
+                    -10px -10px 10px #ffffff inset;
+    }
+    25% {
+        width: 60px;
+        height: 60px;
+        background: #f8f8f8;
+        box-shadow:  10px 10px 10px #cccccc,
+                    10px 10px 10px #ffffff,
+                    0 0 0 #cccccc inset,
+                    0 0 0 #ffffff inset;
+    }
+    50% {
+        width: 240px;
+        height: 60px;
+        background: #f8f8f8;
+        box-shadow:  10px 10px 10px #cccccc,
+                    10px 10px 10px #ffffff,
+                    0 0 0 #cccccc inset,
+                    0 0 0 #ffffff inset;
+        font-size: 0vh;         
+
+    }
+    75% {
+        width: 360px;
+        height: 645px;
+        background: #fafafa;
+        box-shadow:  40px 40px 40px #cccccc,
+                    0 0 0 #ffffff,
+                    0 0 0 #cccccc inset,
+                    2px 2px 2px #ffffff inset;
+        font-size: 2vw;         
+    }
+
+    100% {
+        width: 720px;
+        height: 1290px;
+        background: #fafafa;
+        box-shadow:  40px 40px 40px #cccccc,
+                    0 0 0 #ffffff,
+                    0 0 0 #cccccc inset,
+                    2px 2px 2px #ffffff inset;
+        font-size: 5vh;
+
+    }
+}
+
+
