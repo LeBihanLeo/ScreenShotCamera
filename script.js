@@ -31,8 +31,8 @@ function handleSuccess(stream){
 
 function drawCapture(){
     var c = document.getElementById("capture");
-    c.style.width = widht;
-    c.style.height = height;
+    c.style.width = widht+"px";
+    c.style.height = height+"px";
     var ctx = c.getContext("2d");
     ctx.drawImage(window.live, 10, 10);
 }
