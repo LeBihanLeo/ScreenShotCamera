@@ -27,8 +27,8 @@ function handleSuccess(stream){
     live.srcObject = stream;
     live.addEventListener("playing", () => {
         var c = document.getElementById("capture");
-        c.style.width = live.videoWidth +"px";
-        c.style.height = live.videoHeight+"px";
+        c.width = live.videoWidth ;
+        c.height = live.videoHeight;
       });    
     error.innerHTML =  "Nice";
 
